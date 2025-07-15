@@ -1,6 +1,7 @@
-gunicorn
 flask
-jobLib
+gunicorn
+joblib
 scikit-learn
 groq
 python-dotenv
+requests
