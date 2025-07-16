@@ -100,6 +100,24 @@ def dbs_prediction(value):
         return f"Predicted DBS price: {pred[0]:.2f}"
     except Exception as e:
         return f"Error in prediction: {str(e)}"
+
+    
+@app.route("/start_telegram", methods=["POST"])
+def start_telegram():
+    webhook_url = "https://dbss-telegram.onrender.com"  
+    response = requests.get(f"{TELEGRAM_API}/setWebhook", params={"url": webhook_url})
+
+    msg = " Telegram webhook set successfully." if response.ok else f" Failed: {response.text}"
+    return render_template("main.html", message=msg)
+
+
+@app.route("/stop_telegram", methods=["POST"])
+def stop_telegram():
+    response = requests.get(f"{TELEGRAM_API}/deleteWebhook")
+
+    msg = " Telegram webhook deleted." if response.ok else f" Failed: {response.text}"
+    return render_template("main.html", message=msg)
+   
     
 @app.route("/telegram", methods=["POST"])
 def telegram_webhook():
