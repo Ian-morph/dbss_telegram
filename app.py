@@ -104,7 +104,7 @@ def dbs_prediction(value):
     
 @app.route("/start_telegram", methods=["POST"])
 def start_telegram():
-    webhook_url = "https://dbss-telegram.onrender.com"  
+    webhook_url = "https://dbss-telegram.onrender.com/telegram"  
     response = requests.get(f"{TELEGRAM_API}/setWebhook", params={"url": webhook_url})
 
     msg = " Telegram webhook set successfully." if response.ok else f" Failed: {response.text}"
