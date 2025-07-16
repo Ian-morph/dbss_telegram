@@ -104,10 +104,14 @@ def dbs_prediction(value):
     
 @app.route("/start_telegram", methods=["POST"])
 def start_telegram():
-    webhook_url = "https://dbss-telegram.onrender.com/telegram"  
+    webhook_url = request.url_root + "telegram"  # dynamically build full webhook URL
     response = requests.get(f"{TELEGRAM_API}/setWebhook", params={"url": webhook_url})
 
-    msg = " Telegram webhook set successfully." if response.ok else f" Failed: {response.text}"
+    if response.ok:
+        msg = " Telegram bot is now running."
+    else:
+        msg = f" Failed to start Telegram bot: {response.text}"
+
     return render_template("main.html", message=msg)
 
 
@@ -115,7 +119,11 @@ def start_telegram():
 def stop_telegram():
     response = requests.get(f"{TELEGRAM_API}/deleteWebhook")
 
-    msg = " Telegram webhook deleted." if response.ok else f" Failed: {response.text}"
+    if response.ok:
+        msg = " Telegram bot has now stopped."
+    else:
+        msg = f" Failed to stop Telegram bot: {response.text}"
+
     return render_template("main.html", message=msg)
    
     

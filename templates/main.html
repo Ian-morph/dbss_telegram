@@ -7,6 +7,11 @@
 <body>
     <div class="container">
     <h2>Main</h2>
+        {% if message %}
+            <p style="color: {{ 'red' if 'Failed' in message else 'green' }}; font-weight: bold;">
+                {{ message }}
+            </p>
+        {% endif %}
         <form action="/dbs" method="post">
             <input type="submit" value="Predict DBS price">
         </form>
