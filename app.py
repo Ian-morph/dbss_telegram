@@ -8,7 +8,7 @@ import requests
 
 load_dotenv()
 groq_api_key = os.getenv('GROQ_API_KEY')
-TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN2")
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TELEGRAM_API = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}"
 
 app = Flask(__name__)
